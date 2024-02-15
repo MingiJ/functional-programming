@@ -1,17 +1,41 @@
-const add = (x, y) => x + y
+const { curry } = require("ramda");
 
-const toPair = f => 
-  ([x, y]) => add(x, y)
+const add = (x, y) => x + y;
+
+/*const toPair =
+  (f) =>
+    ([x, y]) =>
+      add(x, y);
+const modulo = curry((x, y) => y % x);*/
+
+const curriedAdd = curry(add);
+
+const increment = curriedAdd(1);
+
+const result = increment(2);
+
+console.log(result);
+
+// curry exercises
+const split = curry((delimiter, string) => string.split(delimiter));
+
+//exercise 1
+const words = split(" ");
+
+module.exports = {
+  words,
+};
 
 
+//composition
+const toUpper = str => str.toUpperCase();
 
-const curry = f => 
-  x => y=> f(x,y)
+const exclaim = str => str + "!";
 
-const curriedAdd = curry(add)
+const first = xs => xs[0];
 
-const increment = curriedAdd(1)
+const compose = (f,g) => x => f(g(x))
 
-const result = increment(2)
+const shout = compose(exclaim, toUpper)
 
-console.log(result)
+console.log(shout("tears"));

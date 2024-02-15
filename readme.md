@@ -30,3 +30,6 @@ No observable side effects
 * Testable
 * Composable
 * Properties/Contract
+
+## Syntax of Writing Curried Functions
+The data it operates should be the last argument in the function that you are passing to be curried.
